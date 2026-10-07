@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdNova AI — AI Content Agency</title>
+  <meta name="description" content="Crie anúncios, vídeos, UGC e imagens para sua marca com IA. Simple plans, conteúdo rápido e visual moderno." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <style>
+    :root{
+      --bg:#070b14;
+      --bg2:#0b1020;
+      --card:#101728;
+      --card2:#131c31;
+      --text:#f7f9ff;
+      --muted:#a8b3c7;
+      --line:rgba(255,255,255,.09);
+      --primary:#7c5cff;
+      --primary2:#18c8ff;
+      --green:#36e39f;
+      --pink:#ff5abf;
+      --yellow:#ffd166;
+      --shadow:0 30px 80px rgba(0,0,0,.35);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(124,92,255,.18),transparent 30%),
+        radial-gradient(circle at 95% 10%,rgba(24,200,255,.12),transparent 28%),
+        linear-gradient(180deg,var(--bg),#090e1a 35%,#070b14 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button,input,select{font:inherit}
+    img{max-width:100%;display:block}
+
+    .container{width:min(1180px,calc(100% - 32px));margin:auto}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(16px);
+      background:rgba(7,11,20,.75);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:-.04em;
+    }
+
+    .logo-mark{
+      width:42px;height:42px;border-radius:14px;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      display:grid;place-items:center;
+      box-shadow:0 10px 28px rgba(124,92,255,.35);
+    }
+
+    .logo-mark i{font-size:18px}
+
+    .nav-links{display:flex;align-items:center;gap:26px;color:#d3daea;font-size:14px;font-weight:600}
+    .nav-links a:hover{color:#fff}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .lang-switch{
+      display:flex;gap:6px;align-items:center;
+      padding:5px;border:1px solid var(--line);
+      background:rgba(255,255,255,.04);border-radius:14px
+    }
+    .lang-btn{
+      border:0;background:transparent;color:#aeb9cd;
+      font-size:11px;font-weight:900;padding:8px 9px;
+      border-radius:10px;cursor:pointer
+    }
+    .lang-btn.active{background:linear-gradient(135deg,var(--primary),#5c7cff);color:#fff}
+
+    .btn{
+      border:0;
+      cursor:pointer;
+      border-radius:16px;
+      padding:13px 18px;
+      font-weight:800;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+    .btn-ghost{background:rgba(255,255,255,.05);color:#fff;border:1px solid var(--line)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),#5c7cff 52%,var(--primary2));
+      box-shadow:0 14px 35px rgba(95,90,255,.32);
+    }
+
+    .hero{
+      padding:88px 0 45px;
+      position:relative;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:56px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 12px;
+      border:1px solid rgba(124,92,255,.35);
+      background:rgba(124,92,255,.1);
+      color:#dcd5ff;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    h1{
+      font-size:clamp(46px,7vw,84px);
+      line-height:.94;
+      margin:0 0 22px;
+      letter-spacing:-.065em;
+      max-width:780px;
+    }
+
+    .gradient-text{
+      background:linear-gradient(90deg,#fff,#a6dfff 45%,#b398ff 76%,#ff89d2);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.7;
+      max-width:680px;
+      margin:0 0 28px;
+    }
+
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .mini-note{font-size:12px;color:#8190aa;margin-top:13px}
+
+    .hero-visual{
+      min-height:560px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .glow{
+      position:absolute;
+      width:390px;height:390px;border-radius:50%;
+      background:radial-gradient(circle,rgba(124,92,255,.42),rgba(24,200,255,.08) 55%,transparent 72%);
+      filter:blur(18px);
+    }
+
+    .dashboard{
+      width:100%;
+      max-width:520px;
+      border:1px solid rgba(255,255,255,.11);
+      background:rgba(15,22,38,.9);
+      border-radius:30px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      position:relative;
+      transform:rotate(-1.3deg);
+    }
+
+    .dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .dots{display:flex;gap:7px}
+    .dots span{width:9px;height:9px;border-radius:50%;background:#3a465f}
+    .dash-badge{font-size:11px;background:rgba(54,227,159,.12);color:#7cf3be;padding:7px 10px;border-radius:999px}
+
+    .creative{
+      min-height:290px;
+      border-radius:23px;
+      background:
+        linear-gradient(180deg,transparent 52%,rgba(0,0,0,.62)),
+        radial-gradient(circle at 72% 18%,#f3d0a3 0 9%,transparent 10%),
+        linear-gradient(135deg,#f07a8d,#7d5cff 48%,#18c8ff);
+      position:relative;
+      overflow:hidden;
+      padding:22px;
+      display:flex;
+      align-items:flex-end;
+    }
+
+    .creative::before{
+      content:"";
+      position:absolute;
+      width:170px;height:170px;border-radius:38% 62% 55% 45%;
+      background:rgba(255,255,255,.16);
+      right:35px;top:58px;
+      transform:rotate(24deg);
+      backdrop-filter:blur(10px);
+    }
+
+    .creative-copy{position:relative;z-index:2}
+    .creative-copy b{font-size:30px;display:block;letter-spacing:-.05em}
+    .creative-copy span{font-size:13px;color:#e9ecf4}
+
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .stat{
+      background:#0b1220;border:1px solid var(--line);border-radius:18px;padding:14px;
+    }
+    .stat strong{display:block;font-size:18px}
+    .stat span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+
+    .floating{
+      position:absolute;
+      background:rgba(15,22,38,.95);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      border-radius:18px;
+      padding:13px 15px;
+      font-size:12px;
+      color:#dce5f6;
+      backdrop-filter:blur(14px);
+    }
+    .float-1{left:-20px;top:75px}
+    .float-2{right:-18px;bottom:88px}
+    .floating i{color:var(--green);margin-right:8px}
+
+    .logos{
+      padding:22px 0 60px;
+    }
+    .logos-title{text-align:center;color:#7f8ba0;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin-bottom:20px}
+    .brand-strip{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+    }
+    .brand-pill{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.025);
+      border-radius:999px;
+      padding:10px 14px;
+      color:#bbc4d5;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    section{padding:84px 0}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 44px}
+    .section-head .eyebrow{margin-bottom:14px}
+    .section-head h2{font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.055em;margin:0 0 16px}
+    .section-head p{margin:0;color:var(--muted);font-size:16px;line-height:1.65}
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .feature-card{
+      min-height:250px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.018));
+      border-radius:24px;
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .feature-card::after{
+      content:"";
+      position:absolute;
+      width:150px;height:150px;border-radius:50%;
+      background:radial-gradient(circle,rgba(124,92,255,.16),transparent 68%);
+      right:-35px;top:-35px;
+    }
+
+    .feature-icon{
+      width:50px;height:50px;border-radius:16px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,rgba(124,92,255,.22),rgba(24,200,255,.12));
+      color:#c8bbff;
+      font-size:20px;
+      margin-bottom:30px;
+      border:1px solid rgba(124,92,255,.26);
+    }
+
+    .feature-card h3{margin:0 0 10px;font-size:20px;letter-spacing:-.03em}
+    .feature-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+
+    .pricing-wrap{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:22px;
+      max-width:920px;
+      margin:auto;
+    }
+
+    .plan{
+      position:relative;
+      border-radius:28px;
+      background:linear-gradient(180deg,#10182a,#0c1322);
+      border:1px solid var(--line);
+      padding:28px;
+      box-shadow:0 24px 70px rgba(0,0,0,.18);
+    }
+
+    .plan.popular{
+      border-color:rgba(124,92,255,.65);
+      box-shadow:0 28px 80px rgba(87,63,219,.2);
+    }
+
+    .popular-badge{
+      position:absolute;top:16px;right:16px;
+      background:linear-gradient(135deg,var(--primary),var(--pink));
+      padding:7px 10px;border-radius:999px;font-size:10px;font-weight:900;text-transform:uppercase;
+    }
+
+    .plan h3{font-size:24px;margin:0 0 4px}
+    .plan-sub{color:var(--muted);font-size:13px;min-height:38px;margin-bottom:22px}
+
+    .price{
+      display:flex;align-items:flex-start;gap:5px;margin-bottom:6px;
+    }
+    .price .currency{font-size:18px;margin-top:6px}
+    .price .amount{font-size:52px;letter-spacing:-.06em;font-weight:900}
+    .price .period{font-size:12px;color:var(--muted);align-self:flex-end;margin-bottom:11px}
+
+    .deliverables{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin:22px 0;
+    }
+
+    .delivery{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+    }
+
+    .delivery strong{display:block;font-size:20px}
+    .delivery span{font-size:11px;color:var(--muted)}
+
+    .plan-list{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:12px}
+    .plan-list li{font-size:13px;color:#d8e0ee;display:flex;gap:10px;align-items:flex-start}
+    .plan-list i{color:var(--green);margin-top:2px}
+    .plan .btn{width:100%}
+
+    .comparison{
+      margin-top:48px;
+      border:1px solid var(--line);
+      border-radius:26px;
+      overflow:hidden;
+      background:#0c1322;
+    }
+
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:17px 20px;border-bottom:1px solid var(--line);text-align:center;font-size:13px}
+    th:first-child,td:first-child{text-align:left}
+    th{background:rgba(255,255,255,.035);font-size:12px;color:#dce4f3}
+    td{color:#bac4d7}
+    td i.fa-check{color:var(--green)}
+    td i.fa-xmark{color:#66738b}
+
+    .calc-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .calc-card,.result-card{
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:linear-gradient(180deg,#10182a,#0d1424);
+      padding:28px;
+    }
+
+    .field{margin-bottom:18px}
+    label{display:block;font-size:12px;font-weight:800;color:#ccd5e5;margin-bottom:8px}
+    input,select{
+      width:100%;
+      border:1px solid var(--line);
+      background:#090f1b;
+      color:#fff;
+      border-radius:15px;
+      padding:14px 15px;
+      outline:none;
+    }
+    input:focus,select:focus{border-color:rgba(124,92,255,.7)}
+
+    .result-card{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:
+        radial-gradient(circle at top right,rgba(124,92,255,.18),transparent 35%),
+        linear-gradient(180deg,#10182a,#0d1424);
+    }
+
+    .result-label{font-size:12px;color:var(--muted);font-weight:700}
+    .result-big{font-size:58px;font-weight:900;letter-spacing:-.06em;margin:5px 0 18px}
+    .result-row{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-top:1px solid var(--line);color:#dbe3f1}
+    .result-row span:last-child{font-weight:800}
+
+    .ugc-section{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.018);
+    }
+
+    .ugc-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:26px;
+      align-items:center;
+    }
+
+    .ugc-copy h2{font-size:clamp(36px,5vw,60px);margin:0 0 16px;letter-spacing:-.055em;line-height:1}
+    .ugc-copy p{color:var(--muted);line-height:1.7;margin-bottom:22px}
+
+    .ugc-mosaic{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:13px;
+    }
+    .ugc-card{
+      border-radius:22px;
+      aspect-ratio:4/5;
+      border:1px solid var(--line);
+      overflow:hidden;
+      position:relative;
+      background:linear-gradient(135deg,#234,#7567ff);
+    }
+    .ugc-card:nth-child(2){background:linear-gradient(135deg,#ff9f68,#ff4f91)}
+    .ugc-card:nth-child(3){background:linear-gradient(135deg,#23c9a7,#296dff)}
+    .ugc-card:nth-child(4){background:linear-gradient(135deg,#ffe173,#9a68ff)}
+    .ugc-card:after{
+      content:"";
+      position:absolute;inset:auto 15px 15px 15px;height:52px;border-radius:16px;
+      background:rgba(0,0,0,.32);
+      backdrop-filter:blur(10px);
+    }
+    .ugc-card span{
+      position:absolute;bottom:31px;left:30px;z-index:2;font-size:12px;font-weight:800
+    }
+
+    .faq{max-width:900px;margin:auto;display:grid;gap:12px}
+    details{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.025);
+      border-radius:18px;
+      padding:0 18px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:19px 0;
+      font-weight:800;
+      font-size:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";font-size:22px;color:#8896ae}
+    details[open] summary:after{content:"−"}
+    details p{color:var(--muted);font-size:13px;line-height:1.65;margin:0;padding:0 0 18px}
+
+    .cta{
+      padding:40px;
+      border:1px solid rgba(124,92,255,.28);
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 20% 0%,rgba(124,92,255,.25),transparent 34%),
+        radial-gradient(circle at 80% 100%,rgba(24,200,255,.16),transparent 28%),
+        #0e1627;
+      text-align:center;
+    }
+    .cta h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.055em;margin:0 0 14px}
+    .cta p{color:var(--muted);max-width:640px;margin:0 auto 24px;line-height:1.6}
+
+    footer{padding:46px 0 26px;color:#8d99ae}
+    .footer-grid{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:30px}
+    .footer-title{color:#d9e0ee;font-weight:800;font-size:13px;margin-bottom:12px}
+    .footer-links{display:grid;gap:9px;font-size:12px}
+    .footer-brand p{font-size:12px;line-height:1.6;max-width:320px}
+    .copyright{border-top:1px solid var(--line);margin-top:32px;padding-top:18px;font-size:11px;text-align:center}
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero-grid,.ugc-grid,.calc-grid{grid-template-columns:1fr}
+      .hero{padding-top:58px}
+      .hero-visual{min-height:auto}
+      .dashboard{margin-top:16px}
+      .feature-grid{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:640px){
+      .container{width:min(100% - 22px,1180px)}
+      .nav-inner{min-height:66px}
+      .nav-actions .btn-ghost{display:none}
+      .btn{padding:12px 14px;border-radius:14px}
+      .hero{padding-top:42px}
+      h1{font-size:48px}
+      .hero p{font-size:15px}
+      .hero-actions{display:grid;grid-template-columns:1fr}
+      .feature-grid,.pricing-wrap,.footer-grid{grid-template-columns:1fr}
+      .feature-card{min-height:210px}
+      .pricing-wrap{gap:16px}
+      .plan{padding:22px}
+      .price .amount{font-size:46px}
+      .deliverables{grid-template-columns:1fr 1fr}
+      .comparison{overflow:auto}
+      table{min-width:620px}
+      section{padding:62px 0}
+      .cta{padding:30px 20px}
+      .floating{display:none}
+      .stats-row{grid-template-columns:1fr 1fr 1fr}
+      .stat{padding:11px}
+    }
+  
+    /* Mobile-first refinements */
+    @media(max-width:760px){
+      body{font-size:15px}
+      .container{width:min(100% - 18px,1180px)}
+      .nav{position:sticky;top:0}
+      .nav-inner{min-height:62px;gap:8px}
+      .logo{font-size:17px;gap:8px}
+      .logo-mark{width:36px;height:36px;border-radius:12px}
+      .nav-actions{gap:6px}
+      .nav-actions > .btn{display:none}
+      .lang-switch{padding:4px;gap:3px;border-radius:12px}
+      .lang-btn{padding:7px 8px;font-size:10px}
+      .hero{padding:34px 0 24px}
+      .hero-grid{grid-template-columns:1fr;gap:24px}
+      h1{font-size:clamp(40px,12vw,56px);line-height:.98;margin-bottom:16px}
+      .hero p{font-size:15px;line-height:1.58}
+      .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+      .hero-actions .btn{width:100%;min-height:48px}
+      .mini-note{font-size:11px;line-height:1.5}
+      .hero-visual{min-height:auto}
+      .dashboard{padding:12px;border-radius:22px;transform:none}
+      .creative{min-height:220px;border-radius:18px;padding:18px}
+      .creative-copy b{font-size:24px}
+      .stats-row{gap:7px}
+      .stat{padding:10px;border-radius:14px}
+      .stat strong{font-size:16px}
+      .stat span{font-size:9px}
+      .logos{padding:14px 0 34px}
+      .brand-strip{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+      .brand-strip::-webkit-scrollbar{display:none}
+      .brand-pill{flex:0 0 auto}
+      section{padding:52px 0}
+      .section-head{margin-bottom:28px;text-align:left}
+      .section-head h2{font-size:36px;line-height:1.03}
+      .section-head p{font-size:14px}
+      .feature-grid{grid-template-columns:1fr;gap:12px}
+      .feature-card{min-height:0;padding:20px;border-radius:20px}
+      .feature-icon{margin-bottom:18px}
+      .pricing-wrap{grid-template-columns:1fr;gap:14px}
+      .plan{padding:20px;border-radius:22px}
+      .plan-sub{min-height:0}
+      .price .amount{font-size:44px}
+      .deliverables{grid-template-columns:1fr 1fr}
+      .delivery{padding:14px}
+      .plan-list{gap:10px}
+      .plan .btn{min-height:48px}
+      .comparison{margin-top:28px;border-radius:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+      table{min-width:680px}
+      th,td{padding:14px 12px;font-size:12px}
+      .ugc-grid{grid-template-columns:1fr;gap:22px}
+      .ugc-copy h2{font-size:38px}
+      .ugc-mosaic{gap:9px}
+      .ugc-card{border-radius:16px}
+      .calc-grid{grid-template-columns:1fr;gap:14px}
+      .calc-card,.result-card{padding:20px;border-radius:22px}
+      .field{margin-bottom:14px}
+      input,select{min-height:50px;font-size:16px;padding:14px}
+      label{font-size:12px}
+      .result-big{font-size:46px}
+      .result-row{font-size:13px}
+      details{border-radius:16px;padding:0 15px}
+      summary{padding:17px 0;font-size:13px}
+      .cta{padding:26px 18px;border-radius:22px;text-align:left}
+      .cta h2{font-size:38px}
+      .cta .btn{width:100%;min-height:48px}
+      footer{padding-top:34px}
+      .footer-grid{grid-template-columns:1fr;gap:22px}
+      .copyright{text-align:left}
+    }
+
+    @media(max-width:390px){
+      h1{font-size:38px}
+      .section-head h2,.ugc-copy h2,.cta h2{font-size:32px}
+      .deliverables{grid-template-columns:1fr}
+      .stats-row{grid-template-columns:1fr}
+    }
+
+</style>
+
+  <style id="light-theme-override">
+    :root{
+      --bg:#f5f6fa;
+      --bg2:#eef1f7;
+      --card:#ffffff;
+      --card2:#ffffff;
+      --text:#0c2340;
+      --muted:#5f6f84;
+      --line:rgba(12,35,64,.12);
+      --primary:#2d6af0;
+      --primary2:#6f55f3;
+      --green:#22b573;
+      --pink:#c92e5d;
+      --yellow:#ffcc5c;
+      --shadow:0 20px 55px rgba(18,34,68,.08);
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 10% 0%,rgba(45,106,240,.08),transparent 30%),
+        radial-gradient(circle at 95% 10%,rgba(111,85,243,.06),transparent 28%),
+        linear-gradient(180deg,#f8f9fc,#f2f4f8 35%,#f6f7fb 100%);
+      color:var(--text);
+    }
+
+    .nav{
+      background:rgba(255,255,255,.9);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-links{color:#324b68}
+    .nav-links a:hover{color:#0c2340}
+    .btn-ghost{
+      background:#fff;
+      color:#214061;
+      border:1px solid var(--line);
+      box-shadow:0 10px 25px rgba(18,34,68,.04);
+    }
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,#2d6af0,#6f55f3);
+      box-shadow:0 14px 35px rgba(45,106,240,.22);
+    }
+
+    .eyebrow{
+      border:1px solid rgba(45,106,240,.15);
+      background:rgba(45,106,240,.06);
+      color:#2952a3;
+    }
+
+    .gradient-text{
+      background:linear-gradient(90deg,#143c6f,#2d6af0 50%,#6f55f3 84%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p,.section-head p,.ugc-copy p,.feature-card p,.mini-note,.plan-sub,details p,.footer-brand p,.brand-pill,.result-label{
+      color:var(--muted) !important;
+    }
+
+    .dashboard{
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(12,35,64,.09);
+      box-shadow:var(--shadow);
+    }
+
+    .dash-badge{
+      background:rgba(34,181,115,.1);
+      color:#1e9460;
+    }
+    .stat{
+      background:#f7f9fd;
+      border:1px solid var(--line);
+    }
+    .stat strong,.feature-card h3,.plan h3,.ugc-copy h2,.section-head h2,h1,.cta h2,
+    .footer-title,.logo,.plan-list li,.result-row,.creative-copy b,.creative-copy span{
+      color:var(--text);
+    }
+
+    .floating{
+      background:rgba(255,255,255,.98);
+      border:1px solid var(--line);
+      color:#29415f;
+    }
+
+    .brand-pill,
+    .feature-card,
+    .calc-card,
+    .result-card,
+    details,
+    .cta,
+    .comparison,
+    .ugc-section,
+    .delivery,
+    .ugc-card,
+    .copyright{
+      background:#fff;
+      border-color:var(--line);
+      color:var(--text);
+      box-shadow:none;
+    }
+
+    .feature-card{
+      background:linear-gradient(180deg,#fff,#fbfcff);
+    }
+    .feature-icon{
+      background:linear-gradient(135deg,rgba(45,106,240,.09),rgba(111,85,243,.08));
+      border:1px solid rgba(45,106,240,.15);
+      color:#3c63db;
+    }
+
+    .logos-title,.footer-links a,.copyright{color:#617388}
+    .footer-links a:hover{color:#173458}
+
+    /* ---- Plans section styled like the screenshot ---- */
+    #planos{
+      background:linear-gradient(180deg,#f6f7fb,#f4f6fa);
+    }
+
+    .pricing-wrap{
+      max-width:1500px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:0;
+      align-items:stretch;
+    }
+
+    .plan{
+      position:relative;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(12,35,64,.14);
+      padding:34px 36px 30px;
+      box-shadow:none;
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .plan.popular{
+      border:2px solid #8b4df5;
+      z-index:2;
+      box-shadow:0 12px 30px rgba(111,85,243,.08);
+      transform:translateY(-10px);
+      overflow:hidden;
+    }
+
+    .popular-badge{
+      position:absolute;
+      top:0;left:0;right:0;
+      border-radius:0;
+      text-align:center;
+      background:linear-gradient(90deg,#2d6af0,#7553f3);
+      padding:12px 10px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:0;
+    }
+
+    .plan h3{
+      font-size:28px;
+      margin:6px 0 8px;
+      letter-spacing:-.03em;
+      color:#08284a;
+    }
+
+    .price{
+      margin-bottom:8px;
+      gap:4px;
+    }
+    .price .currency{
+      font-size:28px;
+      margin-top:8px;
+      color:#2d6af0;
+    }
+    .price .amount{
+      font-size:60px;
+      font-weight:800;
+      line-height:1;
+      color:#2d6af0;
+      letter-spacing:-.06em;
+    }
+    .price .period{
+      font-size:18px;
+      color:#4f6784;
+      align-self:center;
+      margin-top:12px;
+      margin-bottom:0;
+    }
+
+    .deliverables{
+      grid-template-columns:1fr;
+      margin:22px 0 20px;
+      gap:10px;
+      order:3;
+    }
+
+    .delivery{
+      background:#f7f8fa;
+      border:1px solid rgba(12,35,64,.09);
+      border-radius:14px;
+      padding:16px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .delivery strong{
+      font-size:22px;
+      line-height:1.1;
+      color:#08284a;
+      font-weight:800;
+    }
+    .delivery span{
+      font-size:12px;
+      color:#65758a;
+    }
+
+    .plan-list{
+      border-top:1px solid rgba(12,35,64,.1);
+      margin-top:auto;
+      padding-top:18px;
+      order:5;
+    }
+
+    .plan-list li{
+      color:#0f2f51;
+      font-size:14px;
+    }
+
+    .plan .btn{
+      order:4;
+      margin-top:2px;
+      min-height:58px;
+      border-radius:10px;
+      font-size:19px;
+      font-weight:800;
+      box-shadow:none;
+    }
+
+    .plan:not(.popular) .btn{
+      background:#dfe7f6;
+      color:#2d6af0;
+      border:0;
+    }
+
+    .plan.popular .btn{
+      background:#c92e5d;
+      color:#fff;
+      border:0;
+    }
+
+    .comparison{
+      margin-top:40px;
+      border-radius:18px;
+      background:#fff;
+      box-shadow:none;
+    }
+    th{
+      background:#f7f9fd;
+      color:#173458;
+    }
+    td{color:#46617d}
+
+    .calc-card,.result-card{
+      background:#fff;
+    }
+    input,select{
+      background:#fff;
+      color:#0c2340;
+      border:1px solid rgba(12,35,64,.14);
+    }
+    input::placeholder{color:#71829a}
+    label{color:#183c65}
+
+    .ugc-section{
+      background:linear-gradient(180deg,rgba(45,106,240,.035),rgba(255,255,255,.85));
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .cta{
+      background:
+        radial-gradient(circle at 20% 0%,rgba(45,106,240,.12),transparent 34%),
+        radial-gradient(circle at 80% 100%,rgba(111,85,243,.08),transparent 28%),
+        #ffffff;
+    }
+
+    footer{
+      background:transparent;
+      color:#627489;
+    }
+
+    @media(max-width:900px){
+      .pricing-wrap{
+        grid-template-columns:1fr;
+        gap:16px;
+      }
+      .plan.popular{
+        transform:none;
+      }
+    }
+
+    @media(max-width:760px){
+      body{background:#f6f7fb}
+      .pricing-wrap{gap:14px}
+      .plan{
+        padding:22px 20px 22px;
+        border-radius:18px;
+      }
+      .popular-badge{
+        font-size:11px;
+        padding:11px 8px;
+      }
+      .plan h3{
+        font-size:24px;
+        margin-top:18px;
+      }
+      .price .currency{
+        font-size:22px;
+        margin-top:7px;
+      }
+      .price .amount{
+        font-size:52px;
+      }
+      .price .period{
+        font-size:16px;
+      }
+      .delivery{
+        padding:14px 15px;
+      }
+      .plan .btn{
+        min-height:50px;
+        font-size:17px;
+      }
+    }
+  </style>
+
+
+<style id="css-only-visuals">
+  /* All visual mockups below are pure HTML + CSS. No image files required. */
+  .creative-ui{
+    min-height:315px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:18px;
+    background:
+      radial-gradient(circle at 82% 10%,rgba(111,85,243,.14),transparent 27%),
+      linear-gradient(145deg,#f8fbff,#eef3ff 58%,#f9f4ff);
+    color:#0c2340;
+    border:1px solid rgba(12,35,64,.08);
+  }
+  .creative-ui::before{display:none}
+  .creative-toolbar,.creative-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    position:relative;
+    z-index:2;
+  }
+  .creative-chip{
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.12em;
+    padding:7px 10px;
+    background:#0d2f5b;
+    color:#fff;
+    border-radius:999px;
+  }
+  .creative-status{
+    font-size:11px;
+    font-weight:700;
+    color:#516780;
+  }
+  .creative-status i{
+    font-size:8px;
+    color:#22b573;
+    margin-right:5px;
+  }
+  .creative-product{
+    display:grid;
+    grid-template-columns:145px 1fr;
+    gap:22px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+    margin:10px 0;
+  }
+  .product-orb{
+    width:145px;
+    aspect-ratio:1;
+    border-radius:38px;
+    display:grid;
+    place-items:center;
+    background:
+      radial-gradient(circle at 35% 25%,rgba(255,255,255,.88),transparent 20%),
+      linear-gradient(145deg,#65d6ff,#5c71ff 52%,#8a5cf4);
+    box-shadow:0 24px 44px rgba(65,100,220,.18);
+    transform:rotate(-4deg);
+  }
+  .product-orb i{
+    font-size:58px;
+    color:#fff;
+    filter:drop-shadow(0 12px 15px rgba(0,0,0,.14));
+  }
+  .product-copy{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:9px;
+  }
+  .product-copy small{
+    color:#677b93;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .product-copy strong{
+    font-size:27px;
+    line-height:1.05;
+    letter-spacing:-.045em;
+    color:#0c2340;
+  }
+  .fake-cta{
+    margin-top:4px;
+    padding:9px 13px;
+    border-radius:10px;
+    background:#0d2f5b;
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+  }
+  .creative-bottom{
+    border-top:1px solid rgba(12,35,64,.08);
+    padding-top:12px;
+    justify-content:flex-start;
+  }
+  .creative-bottom span{
+    font-size:11px;
+    color:#65768b;
+    font-weight:700;
+  }
+
+  .ugc-card{
+    background:#fff !important;
+    border:1px solid rgba(12,35,64,.1) !important;
+    box-shadow:0 18px 42px rgba(18,34,68,.07) !important;
+    padding:16px;
+    color:#0c2340;
+  }
+  .ugc-card::after{display:none !important}
+  .ugc-card > span{
+    left:16px !important;
+    bottom:14px !important;
+    color:#0c2340 !important;
+    font-size:12px !important;
+  }
+
+  .ugc-phone{
+    background:linear-gradient(180deg,#f7f9fd,#eef3ff) !important;
+  }
+  .ugc-topbar{
+    display:flex;justify-content:space-between;
+    font-size:10px;font-weight:800;color:#53657c;
+  }
+  .ugc-avatar{
+    width:58px;height:58px;border-radius:50%;
+    display:grid;place-items:center;
+    background:linear-gradient(135deg,#2d6af0,#7958f4);
+    color:#fff;
+    font-size:22px;
+    margin:26px auto 16px;
+  }
+  .ugc-lines{display:grid;gap:7px;text-align:center}
+  .ugc-lines b{font-size:13px}
+  .ugc-lines span{
+    position:static !important;
+    display:block;height:7px;border-radius:999px;
+    background:#dbe4f0;
+    margin:auto;
+  }
+  .ugc-lines span:nth-child(2){width:75%}
+  .ugc-lines span:nth-child(3){width:58%}
+  .ugc-lines span:nth-child(4){width:68%}
+  .ugc-play{
+    position:absolute;
+    right:16px;top:16px;
+    width:34px;height:34px;border-radius:50%;
+    display:grid;place-items:center;
+    background:#0d2f5b;color:#fff;font-size:11px;
+  }
+
+  .ugc-product-card{
+    background:linear-gradient(145deg,#fff8f3,#fff,#f6f0ff) !important;
+  }
+  .mini-label{
+    display:inline-block;
+    font-size:9px;font-weight:900;letter-spacing:.12em;
+    background:#c92e5d;color:#fff;
+    padding:6px 8px;border-radius:999px;
+  }
+  .mini-product{
+    width:100px;height:128px;border-radius:28px;
+    display:grid;place-items:center;
+    margin:18px auto 12px;
+    background:linear-gradient(160deg,#ffd9e5,#efc4ff);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
+  }
+  .mini-product i{font-size:48px;color:#9d4771}
+  .mini-price{text-align:center;font-size:25px;font-weight:900}
+  .mini-button{
+    width:max-content;margin:8px auto 0;
+    background:#0d2f5b;color:#fff;padding:8px 13px;
+    border-radius:9px;font-size:10px;font-weight:800;
+  }
+
+  .ugc-chart-card{
+    background:linear-gradient(180deg,#f7fbff,#fff) !important;
+  }
+  .chart-title{font-size:11px;font-weight:800;color:#63748b}
+  .bars{
+    height:125px;
+    display:flex;
+    gap:8px;
+    align-items:end;
+    margin:18px 0 12px;
+    padding:0 3px;
+    border-bottom:1px solid #dbe3ed;
+  }
+  .bars i{
+    flex:1;
+    border-radius:7px 7px 2px 2px;
+    background:linear-gradient(180deg,#7757f4,#2d6af0);
+  }
+  .chart-kpi{
+    font-size:26px;font-weight:900;color:#15385e;
+  }
+  .chart-kpi small{font-size:10px;color:#74869c}
+
+  .ugc-reel-card{
+    background:
+      radial-gradient(circle at 50% 40%,rgba(105,91,255,.18),transparent 28%),
+      linear-gradient(155deg,#f8fbff,#f4efff) !important;
+  }
+  .reel-ring{
+    width:110px;height:110px;border-radius:50%;
+    margin:22px auto 14px;
+    display:grid;place-items:center;
+    border:10px solid rgba(45,106,240,.08);
+    outline:3px solid #6f55f3;
+    color:#6f55f3;font-size:36px;
+  }
+  .reel-caption{text-align:center;font-size:12px;font-weight:800}
+  .reel-controls{
+    display:flex;justify-content:center;gap:16px;
+    margin-top:13px;color:#536984;
+  }
+
+  @media(max-width:760px){
+    .creative-ui{min-height:285px}
+    .creative-product{grid-template-columns:105px 1fr;gap:15px}
+    .product-orb{width:105px;border-radius:28px}
+    .product-orb i{font-size:42px}
+    .product-copy strong{font-size:21px}
+    .ugc-mosaic{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:420px){
+    .ugc-mosaic{grid-template-columns:1fr}
+    .ugc-card{aspect-ratio:auto;min-height:290px}
+  }
+</style>
+
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+      <span>AdNova AI</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#recursos" data-i18n="features_label">Features</a>
+      <a href="#planos" data-i18n="nav_plans">Plans</a>
+      <a href="#comparacao" data-i18n="nav_compare">Comparison</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="lang-switch" aria-label="Language selector">
+        <button class="lang-btn active" data-lang-btn="en">EN</button>
+        <button class="lang-btn" data-lang-btn="pt">PT</button>
+        <button class="lang-btn" data-lang-btn="es">ES</button>
+      </div>
+      <a href="#planos" class="btn btn-ghost" data-i18n="nav_plans">View plans</a>
+      <a href="#planos" class="btn btn-primary" data-i18n="nav_start" data-i18n="start_now">Get started</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow"><i class="fa-solid fa-bolt"></i> AI content for brands that want to grow</div>
+        <h1 data-i18n-html="hero_title">Create <span class="gradient-text">ads, videos & UGC</span> at scale.</h1>
+        <p data-i18n="hero_text">An AI-powered digital agency that turns ideas into ready-to-publish creatives for social media, campaigns and ads.</p>
+
+        <div class="hero-actions">
+          <a href="#planos" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Choose my plan</a>
+          <a href="#recursos" class="btn btn-ghost"><i class="fa-regular fa-circle-play"></i> Explore features</a>
+        </div>
+        <div class="mini-note" data-i18n="hero_note">Simple, fast and complete. Visual content, UGC, ads and planning in one place.</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="glow"></div>
+        <div class="dashboard">
+          <div class="dash-top">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="dash-badge"><i class="fa-solid fa-arrow-trend-up"></i> Performance active</div>
+          </div>
+
+          <div class="creative creative-ui">
+            <div class="creative-toolbar">
+              <span class="creative-chip">AI AD</span>
+              <span class="creative-status"><i class="fa-solid fa-circle"></i> Live</span>
+            </div>
+            <div class="creative-product">
+              <div class="product-orb">
+                <i class="fa-solid fa-bag-shopping"></i>
+              </div>
+              <div class="product-copy">
+                <small data-i18n="new_campaign">New campaign</small>
+                <strong data-i18n="scroll_content">Content that stops the scroll.</strong>
+                <span class="fake-cta">Shop now</span>
+              </div>
+            </div>
+            <div class="creative-bottom">
+              <span><i class="fa-solid fa-heart"></i> 8.4K</span>
+              <span><i class="fa-solid fa-comment"></i> 642</span>
+              <span><i class="fa-solid fa-arrow-up-right-from-square"></i> 1.2K</span>
+            </div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat"><strong>+38%</strong><span data-i18n="engagement">Engagement</span></div>
+            <div class="stat"><strong>2.8x</strong><span data-i18n="more_tests">More tests</span></div>
+            <div class="stat"><strong>-61%</strong><span data-i18n="creative_time">Creative time</span></div>
+          </div>
+
+          <div class="floating float-1"><i class="fa-solid fa-image"></i> Image generated in seconds</div>
+          <div class="floating float-2"><i class="fa-solid fa-video"></i> UGC ready to publish</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos">
+    <div class="container">
+      <div class="logos-title" data-i18n="for_brands">Built for brands, local businesses, creators and agencies</div>
+      <div class="brand-strip">
+        <span class="brand-pill">tidewell</span><span class="brand-pill">solace wellness</span>
+        <span class="brand-pill">strata</span><span class="brand-pill">harper lane</span>
+        <span class="brand-pill">milo studio</span><span class="brand-pill">orixo</span>
+        <span class="brand-pill">lume</span><span class="brand-pill">sun & soil</span>
+        <span class="brand-pill">marlo & co</span><span class="brand-pill">nimbus</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="all_one_place">Everything in one place</div>
+        <h2 data-i18n="idea_to_publish">From idea to publishing</h2>
+        <p data-i18n="automate_content">Automate your content production without losing brand identity, speed or consistency.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-bullhorn"></i></div>
+          <h3 data-i18n="ai_ads">AI Ads</h3>
+          <p data-i18n="ai_ads_text">Create campaign, offer, launch and social media creatives with fast variations for testing.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-video"></i></div>
+          <h3 data-i18n="videos_reels">Videos & Reels</h3>
+          <p data-i18n="videos_reels_text">Turn ideas, products and copy into short-form videos ready for Instagram, TikTok, Shorts and ads.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-user-group"></i></div>
+          <h3 data-i18n="ugc_campaigns">UGC for campaigns</h3>
+          <p data-i18n="ugc_campaigns_text">Create testimonial, demo and natural-style creatives that build trust and drive conversions.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-images"></i></div>
+          <h3 data-i18n="images_scale">Images at scale</h3>
+          <p data-i18n="images_scale_text">Create posts, banners, product creatives, promotional campaigns and brand assets in minutes.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-calendar-days"></i></div>
+          <h3 data-i18n="content_calendar">Content calendar</h3>
+          <p data-i18n="content_calendar_text">Organize ideas, campaigns and posts by date to keep your digital presence active.</p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3 data-i18n="performance_analysis">Performance analysis</h3>
+          <p data-i18n="performance_analysis_text">See which content performs best and use those insights to improve your next creatives.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="planos">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="simple_plans">Simple plans</div>
+        <h2 data-i18n="choose_volume">Choose the right volume for your brand</h2>
+        <p data-i18n="start_small">Start small and increase your production as your needs grow.</p>
+      </div>
+
+      
+<div class="pricing-wrap">
+  <article class="plan">
+    <h3 data-i18n="enterprise_plan">Enterprise +</h3>
+    <div class="plan-sub" data-i18n="enterprise_desc">Under $9/day to run ads and social for all clients</div>
+
+    <div class="price">
+      <span class="currency">$</span>
+      <span class="amount">249</span>
+      <span class="period" data-i18n="per_month_en">/month</span>
+    </div>
+
+    <div class="deliverables">
+      <div class="delivery">
+        <strong data-i18n="enterprise_credits">10,000 credits / month</strong>
+        <span data-i18n="enterprise_output">About 2500 images or 250 videos</span>
+      </div>
+    </div>
+
+    <a href="#" class="btn" data-i18n="choose_btn">Choose</a>
+
+    <ul class="plan-list">
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="unlimited_brands">Unlimited Brands</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="auto_posting">Auto Posting</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="publish_60">Publish to 60 channels</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="competitor_600">600 Competitor Runs/month</span></li>
+    </ul>
+  </article>
+
+  <article class="plan popular">
+    <div class="popular-badge" data-i18n="most_chosen">Most popular</div>
+    <h3 data-i18n="rise_plan">Rise</h3>
+    <div class="plan-sub" data-i18n="rise_desc">Best for growing brands that need more output and better automation.</div>
+
+    <div class="price">
+      <span class="currency">$</span>
+      <span class="amount">79</span>
+      <span class="period" data-i18n="per_month_en">/month</span>
+    </div>
+
+    <div class="deliverables">
+      <div class="delivery">
+        <strong data-i18n="rise_credits">3,200 credits / month</strong>
+        <span data-i18n="rise_output_custom">About 200 images or 30 videos</span>
+      </div>
+    </div>
+
+    <a href="#" class="btn" data-i18n="choose_btn">Choose</a>
+
+    <ul class="plan-list">
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="up_to_4_brands">Up to 4 Brands</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="auto_posting">Auto Posting</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="publish_20">Publish to 20 channels</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="competitor_130">130 Competitor Runs/month</span></li>
+    </ul>
+  </article>
+
+  <article class="plan">
+    <h3 data-i18n="core_plan">Core</h3>
+    <div class="plan-sub" data-i18n="core_desc">Ideal for smaller businesses that want consistent content every month.</div>
+
+    <div class="price">
+      <span class="currency">$</span>
+      <span class="amount">32</span>
+      <span class="period" data-i18n="per_month_en">/month</span>
+    </div>
+
+    <div class="deliverables">
+      <div class="delivery">
+        <strong data-i18n="core_credits">1,300 credits / month</strong>
+        <span data-i18n="core_output_custom">About 100 images or 15 videos</span>
+      </div>
+    </div>
+
+    <a href="#" class="btn" data-i18n="choose_btn">Choose</a>
+
+    <ul class="plan-list">
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="one_brand">1 brand</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="no_auto_posting">No Auto Posting</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="publish_10">Publish to 10 channels</span></li>
+      <li><i class="fa-solid fa-check"></i> <span data-i18n="competitor_60">60 Competitor Runs/month</span></li>
+    </ul>
+  </article>
+</div>
+
+<div class="comparison"
+ id="comparacao">
+        <table>
+          <thead>
+            <tr>
+              <th data-i18n="features_label">Features</th>
+              <th data-i18n="plan1">Plan 1</th>
+              <th data-i18n="plan2">Plan 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="images_per_month">Images per month</td><td>100</td><td>200</td></tr>
+            <tr><td data-i18n="videos_per_month">Videos per month</td><td>15</td><td>30</td></tr>
+            <tr><td>UGC</td><td><i class="fa-solid fa-check"></i></td><td><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td data-i18n="content_calendar">Content calendar</td><td><i class="fa-solid fa-check"></i></td><td><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td data-i18n="auto_posting">Auto posting</td><td><i class="fa-solid fa-xmark"></i></td><td><i class="fa-solid fa-check"></i></td></tr>
+            <tr><td data-i18n="competitor_analysis">Competitor analysis</td><td data-i18n="basic">Basic</td><td data-i18n="advanced">Advanced</td></tr>
+            <tr><td data-i18n="speed">Speed</td><td data-i18n="standard">Standard</td><td data-i18n="priority">Priority</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="ugc-section">
+    <div class="container ugc-grid">
+      <div class="ugc-copy">
+        <div class="eyebrow" data-i18n="natural_creatives">Creatives that feel natural</div>
+        <h2 data-i18n="ugc_ads_sell">UGC, ads and videos designed to sell.</h2>
+        <p data-i18n="human_content">Create more human, direct and visual content. Ideal for products, services, launches, offers and performance campaigns.</p>
+        <a href="#planos" class="btn btn-primary" data-i18n="create_campaign">Create my campaign</a>
+      </div>
+
+      <div class="ugc-mosaic">
+        <div class="ugc-card ugc-phone">
+          <div class="ugc-topbar"><span>9:41</span><i class="fa-solid fa-battery-full"></i></div>
+          <div class="ugc-avatar"><i class="fa-solid fa-user"></i></div>
+          <div class="ugc-lines">
+            <b>Creator review</b>
+            <span></span><span></span><span></span>
+          </div>
+          <div class="ugc-play"><i class="fa-solid fa-play"></i></div>
+          <span data-i18n="product_review">Product review</span>
+        </div>
+
+        <div class="ugc-card ugc-product-card">
+          <div class="mini-label">NEW</div>
+          <div class="mini-product"><i class="fa-solid fa-bottle-droplet"></i></div>
+          <div class="mini-price">$29</div>
+          <div class="mini-button">Buy now</div>
+          <span data-i18n="special_offer">Special offer</span>
+        </div>
+
+        <div class="ugc-card ugc-chart-card">
+          <div class="chart-title">Campaign performance</div>
+          <div class="bars">
+            <i style="height:32%"></i>
+            <i style="height:48%"></i>
+            <i style="height:42%"></i>
+            <i style="height:68%"></i>
+            <i style="height:82%"></i>
+            <i style="height:94%"></i>
+          </div>
+          <div class="chart-kpi">+42% <small>CTR</small></div>
+          <span data-i18n="before_after">Before & after</span>
+        </div>
+
+        <div class="ugc-card ugc-reel-card">
+          <div class="reel-ring"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <div class="reel-caption">AI generated reel</div>
+          <div class="reel-controls">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-comment"></i>
+            <i class="fa-solid fa-share"></i>
+          </div>
+          <span data-i18n="video_reels">Video for Reels</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="calculator">Calculator</div>
+        <h2 data-i18n="see_savings">See how much you could save</h2>
+        <p data-i18n="compare_cost">Compare your current production cost with a monthly AdNova AI plan.</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-card">
+          <div class="field">
+            <label data-i18n="clients_brands">Number of clients or brands</label>
+            <input id="clients" type="number" min="1" value="5">
+          </div>
+
+          <div class="field">
+            <label data-i18n="posts_client">Posts or ads per client / month</label>
+            <input id="posts" type="number" min="1" value="15">
+          </div>
+
+          <div class="field">
+            <label data-i18n="minutes_piece">Minutes to produce each piece</label>
+            <input id="minutes" type="number" min="1" value="30">
+          </div>
+
+          <div class="field">
+            <label data-i18n="hourly_cost">Hourly professional cost</label>
+            <input id="hourly" type="number" min="0" value="35">
+          </div>
+
+          <div class="field">
+            <label data-i18n="desired_plan">Selected plan</label>
+            <select id="plan">
+              <option value="99" data-i18n-option="plan1_option">Plan 1 — R$ 99/month</option>
+              <option value="179" selected data-i18n-option="plan2_option">Plan 2 — R$ 179/month</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <span class="result-label" data-i18n="estimated_savings">Estimated monthly savings</span>
+          <div class="result-big" id="saving">R$ 0</div>
+
+          <div class="result-row">
+            <span data-i18n="current_cost">Your current cost</span>
+            <span id="currentCost">R$ 0</span>
+          </div>
+
+          <div class="result-row">
+            <span data-i18n="cost_adnova">Cost with AdNova AI</span>
+            <span id="aiCost">R$ 179</span>
+          </div>
+
+          <div class="result-row">
+            <span data-i18n="time_saved">Estimated time saved</span>
+            <span id="timeSaved">0h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="frequent_questions">Frequently asked questions</div>
+        <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary data-i18n="what_image">What counts as an image?</summary>
+          <p data-i18n="what_image_answer">Each finished static creative counts as one image from your monthly plan allowance.</p>
+        </details>
+
+        <details>
+          <summary data-i18n="what_video">What counts as a video?</summary>
+          <p data-i18n="what_video_answer">Each finished and exported video counts as one video from your plan allowance.</p>
+        </details>
+
+        <details>
+          <summary data-i18n="change_plan">Can I change my plan?</summary>
+          <p data-i18n="change_plan_answer">Yes. You can upgrade whenever your content needs increase.</p>
+        </details>
+
+        <details>
+          <summary data-i18n="plan2_autopost">O Plan 2 tem auto postagem?</summary>
+          <p data-i18n="plan2_autopost_answer">Yes. Plan 2 includes automation and publishing features for supported connected social networks.</p>
+        </details>
+
+        <details>
+          <summary data-i18n="for_agencies">Is it suitable for agencies?</summary>
+          <p data-i18n="for_agencies_answer">Yes. It is designed for businesses, social media managers, freelancers and agencies managing multiple brands.</p>
+        </details>
+
+        <details>
+          <summary data-i18n="social_content">Can I create content for Instagram, TikTok and ads?</summary>
+          <p data-i18n="social_content_answer">Yes. You can produce creatives for social media, paid campaigns, short videos, posts, banners and promotional assets.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta">
+        <div class="eyebrow" data-i18n="ready_scale">Ready to scale?</div>
+        <h2 data-i18n="create_test_sell">Create more. Test more. Sell more.</h2>
+        <p data-i18n="faster_operation">Run a faster, more organized visual content operation that keeps up with your brand.</p>
+        <a href="#planos" class="btn btn-primary"><i class="fa-solid fa-arrow-right"></i> Get started</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-mark"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          <span>AdNova AI</span>
+        </div>
+        <p data-i18n="footer_desc">Platform for creating ads, images, videos, UGC and social media content.</p>
+      </div>
+
+      <div>
+        <div class="footer-title" data-i18n="product">Product</div>
+        <div class="footer-links">
+          <a href="#recursos" data-i18n="features_label">Features</a>
+          <a href="#planos" data-i18n="nav_plans">Plans</a>
+          <a href="#comparacao" data-i18n="nav_compare">Comparison</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title" data-i18n="features_label">Features</div>
+        <div class="footer-links">
+          <a href="#" data-i18n="ad_generator">Ad generator</a>
+          <a href="#" data-i18n="video_generator">Video generator</a>
+          <a href="#">UGC</a>
+          <a href="#" data-i18n="calendar">Calendar</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title" data-i18n="company">Company</div>
+        <div class="footer-links">
+          <a href="#" data-i18n="about">About</a>
+          <a href="#" data-i18n="contact">Contact</a>
+          <a href="#" data-i18n="terms">Terms</a>
+          <a href="#" data-i18n="privacy">Privacy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">© 2026 AdNova AI. <span data-i18n="all_rights">All rights reserved.</span></div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  if(!sessionStorage.getItem('adnova_force_default_english_v2')){
+    localStorage.setItem('adnova_lang','en');
+    sessionStorage.setItem('adnova_force_default_english_v2','1');
+  }
+})();
+</script>
+<script>
+const translations = {
+  pt: {
+    nav_resources:"Features", nav_plans:"Plans", nav_compare:"Comparison", nav_faq:"FAQ", nav_start:"Get started",
+    hero_eyebrow:"AI content for brands that want to grow",
+    hero_title:'Create <span class="gradient-text">ads, videos & UGC</span> at scale.',
+    hero_text:"An AI-powered digital agency that turns ideas into ready-to-publish creatives for social media, campaigns and ads.",
+    hero_choose:"Choose my plan", hero_features:"Explore features", hero_note:"Simple, fast and complete. Visual content, UGC, ads and planning in one place.",
+    performance_active:"Performance active", new_campaign:"New campaign", scroll_content:"Content that stops the scroll.",
+    engagement:"Engagement", more_tests:"More tests", creative_time:"Creative time", image_seconds:"Image generated in seconds", ugc_publish:"UGC ready to publish",
+    for_brands:"Built for brands, local businesses, creators and agencies",
+    all_one_place:"Everything in one place", idea_to_publish:"From idea to publishing",
+    automate_content:"Automate your content production without losing brand identity, speed or consistency.",
+    ai_ads:"AI Ads", ai_ads_text:"Create campaign, offer, launch and social media creatives with fast variations for testing.",
+    videos_reels:"Videos & Reels", videos_reels_text:"Turn ideas, products and copy into short-form videos ready for Instagram, TikTok, Shorts and ads.",
+    ugc_campaigns:"UGC for campaigns", ugc_campaigns_text:"Create testimonial, demo and natural-style creatives that build trust and drive conversions.",
+    images_scale:"Images at scale", images_scale_text:"Create posts, banners, product creatives, promotional campaigns and brand assets in minutes.",
+    content_calendar:"Content calendar", content_calendar_text:"Organize ideas, campaigns and posts by date to keep your digital presence active.",
+    performance_analysis:"Performance analysis", performance_analysis_text:"See which content performs best and use those insights to improve your next creatives.",
+    simple_plans:"Simple plans", choose_volume:"Choose the right volume for your brand", start_small:"Start small and increase your production as your needs grow.",
+    plan1:"Plan 1", plan1_desc:"Ideal para pequenos negócios e marcas que estão começando a produzir conteúdo com frequência.",
+    images_month:"images / month", videos_month:"videos / month", one_brand:"1 brand", ai_image_creation:"AI image creation", captions_hashtags:"Captions & hashtags",
+    creative_export:"Creative export", choose_plan1:"Escolher Plan 1", most_chosen:"Most popular",
+    plan2:"Plan 2", plan2_desc:"Para empresas que querem mais volume, mais testes e presença constante em vários canais.", up_to_3_brands:"Up to 3 brands",
+    videos_reels_ugc:"Videos, reels & UGC", auto_posting:"Auto posting", content_planning:"Content planning", competitor_analysis:"Competitor analysis",
+    priority_generation:"Priority generation", choose_plan2:"Escolher Plan 2",
+    features_label:"Features", images_per_month:"Images per month", videos_per_month:"Videos per month", basic:"Basic", advanced:"Advanced", speed:"Speed", standard:"Standard", priority:"Priority",
+    natural_creatives:"Creatives that feel natural", ugc_ads_sell:"UGC, ads and videos designed to sell.",
+    human_content:"Create more human, direct and visual content. Ideal for products, services, launches, offers and performance campaigns.",
+    create_campaign:"Create my campaign", product_review:"Product review", special_offer:"Special offer", before_after:"Before & after", video_reels:"Video for Reels",
+    calculator:"Calculator", see_savings:"See how much you could save", compare_cost:"Compare your current production cost with a monthly AdNova AI plan.",
+    clients_brands:"Number of clients or brands", posts_client:"Posts or ads per client / month", minutes_piece:"Minutes to produce each piece",
+    hourly_cost:"Hourly professional cost", desired_plan:"Selected plan", estimated_savings:"Estimated monthly savings",
+    current_cost:"Your current cost", cost_adnova:"Cost with AdNova AI", time_saved:"Estimated time saved",
+    frequent_questions:"Frequently asked questions", faq_title:"Frequently Asked Questions", what_image:"What counts as an image?",
+    what_image_answer:"Each finished static creative counts as one image from your monthly plan allowance.", what_video:"What counts as a video?",
+    what_video_answer:"Each finished and exported video counts as one video from your plan allowance.", change_plan:"Can I change my plan?",
+    change_plan_answer:"Yes. You can upgrade whenever your content needs increase.", plan2_autopost:"O Plan 2 tem auto postagem?",
+    plan2_autopost_answer:"Sim. O Plan 2 inclui recursos de automação e publicação, conforme as redes integradas à plataforma.",
+    for_agencies:"Is it suitable for agencies?", for_agencies_answer:"Yes. It is designed for businesses, social media managers, freelancers and agencies managing multiple brands.",
+    social_content:"Can I create content for Instagram, TikTok and ads?", social_content_answer:"Yes. You can produce creatives for social media, paid campaigns, short videos, posts, banners and promotional assets.",
+    ready_scale:"Ready to scale?", create_test_sell:"Create more. Test more. Sell more.",
+    faster_operation:"Run a faster, more organized visual content operation that keeps up with your brand.", start_now:"Get started",
+    footer_desc:"Platform for creating ads, images, videos, UGC and social media content.", product:"Product",
+    ad_generator:"Ad generator", video_generator:"Video generator", calendar:"Calendar", company:"Company", about:"About", contact:"Contact", terms:"Terms", privacy:"Privacy",
+    plan1_option:"Plan 1 — R$ 99/month", plan2_option:"Plan 2 — R$ 179/month", per_month:"/month", all_rights:"All rights reserved.",
+    enterprise_plan:"Enterprise +", enterprise_desc:"Menos de US$9/dia para rodar anúncios e social para todos os clientes",
+    enterprise_credits:"10.000 créditos / mês", enterprise_output:"Cerca de 2500 imagens ou 250 vídeos",
+    unlimited_brands:"Marcas ilimitadas", publish_60:"Publique em 60 canais", competitor_600:"600 análises de concorrentes/month",
+    rise_plan:"Rise", rise_desc:"Melhor para marcas em crescimento que precisam de mais volume e melhor automação.",
+    rise_credits:"3.200 créditos / mês", rise_output_custom:"Cerca de 200 imagens ou 30 vídeos",
+    up_to_4_brands:"Até 4 marcas", publish_20:"Publique em 20 canais", competitor_130:"130 análises de concorrentes/month",
+    core_plan:"Core", core_desc:"Ideal para pequenos negócios que querem conteúdo consistente todos os meses.",
+    core_credits:"1.300 créditos / mês", core_output_custom:"Cerca de 100 imagens ou 15 vídeos",
+    no_auto_posting:"Sem Auto Postagem", publish_10:"Publique em 10 canais", competitor_60:"60 análises de concorrentes/month",
+    choose_btn:"Escolher", per_month_en:"/month"
+  },
+  en: {
+    nav_resources:"Features", nav_plans:"Plans", nav_compare:"Comparison", nav_faq:"FAQ", nav_start:"Get started",
+    hero_eyebrow:"AI content for brands that want to grow",
+    hero_title:'Create <span class="gradient-text">ads, videos & UGC</span> at scale.',
+    hero_text:"An AI-powered digital agency that turns ideas into ready-to-publish creatives for social media, campaigns and ads. Create more content, test more formats and discover what truly earns attention.",
+    hero_choose:"Choose my plan", hero_features:"Explore features", hero_note:"Simple, fast and complete. Visual content, UGC, ads and planning in one place.",
+    performance_active:"Performance active", new_campaign:"New campaign", scroll_content:"Content that stops the scroll.",
+    engagement:"Engagement", more_tests:"More tests", creative_time:"Creative time", image_seconds:"Image generated in seconds", ugc_publish:"UGC ready to publish",
+    for_brands:"Built for brands, local businesses, creators and agencies",
+    all_one_place:"Everything in one place", idea_to_publish:"From idea to publishing",
+    automate_content:"Automate your content production without losing brand identity, speed or consistency.",
+    ai_ads:"AI Ads", ai_ads_text:"Create campaign, offer, launch and social media creatives with fast variations for testing.",
+    videos_reels:"Videos & Reels", videos_reels_text:"Turn ideas, products and copy into short-form videos ready for Instagram, TikTok, Shorts and ads.",
+    ugc_campaigns:"UGC for campaigns", ugc_campaigns_text:"Create testimonial, demo and natural-style creatives that build trust and drive conversions.",
+    images_scale:"Images at scale", images_scale_text:"Create posts, banners, product creatives, promotional campaigns and brand assets in minutes.",
+    content_calendar:"Content calendar", content_calendar_text:"Organize ideas, campaigns and posts by date to keep your digital presence active.",
+    performance_analysis:"Performance analysis", performance_analysis_text:"See which content performs best and use those insights to improve your next creatives.",
+    simple_plans:"Simple plans", choose_volume:"Choose the right volume for your brand", start_small:"Start small and increase your production as your needs grow.",
+    plan1:"Plan 1", plan1_desc:"Ideal for small businesses and brands starting to produce content consistently.",
+    images_month:"images / month", videos_month:"videos / month", one_brand:"1 brand", ai_image_creation:"AI image creation", captions_hashtags:"Captions & hashtags",
+    creative_export:"Creative export", choose_plan1:"Choose Plan 1", most_chosen:"Most popular",
+    plan2:"Plan 2", plan2_desc:"For companies that need more volume, more testing and constant presence across channels.", up_to_3_brands:"Up to 3 brands",
+    videos_reels_ugc:"Videos, reels & UGC", auto_posting:"Auto posting", content_planning:"Content planning", competitor_analysis:"Competitor analysis",
+    priority_generation:"Priority generation", choose_plan2:"Choose Plan 2",
+    features_label:"Features", images_per_month:"Images per month", videos_per_month:"Videos per month", basic:"Basic", advanced:"Advanced", speed:"Speed", standard:"Standard", priority:"Priority",
+    natural_creatives:"Creatives that feel natural", ugc_ads_sell:"UGC, ads and videos designed to sell.",
+    human_content:"Create more human, direct and visual content. Ideal for products, services, launches, offers and performance campaigns.",
+    create_campaign:"Create my campaign", product_review:"Product review", special_offer:"Special offer", before_after:"Before & after", video_reels:"Video for Reels",
+    calculator:"Calculator", see_savings:"See how much you could save", compare_cost:"Compare your current production cost with a monthly AdNova AI plan.",
+    clients_brands:"Number of clients or brands", posts_client:"Posts or ads per client / month", minutes_piece:"Minutes to produce each piece",
+    hourly_cost:"Hourly professional cost", desired_plan:"Selected plan", estimated_savings:"Estimated monthly savings",
+    current_cost:"Your current cost", cost_adnova:"Cost with AdNova AI", time_saved:"Estimated time saved",
+    frequent_questions:"Frequently asked questions", faq_title:"Frequently Asked Questions", what_image:"What counts as an image?",
+    what_image_answer:"Each finished static creative counts as one image from your monthly plan allowance.", what_video:"What counts as a video?",
+    what_video_answer:"Each finished and exported video counts as one video from your plan allowance.", change_plan:"Can I change my plan?",
+    change_plan_answer:"Yes. You can upgrade whenever your content needs increase.", plan2_autopost:"Does Plan 2 include auto posting?",
+    plan2_autopost_answer:"Yes. Plan 2 includes automation and publishing features for supported connected social networks.",
+    for_agencies:"Is it suitable for agencies?", for_agencies_answer:"Yes. It is designed for businesses, social media managers, freelancers and agencies managing multiple brands.",
+    social_content:"Can I create content for Instagram, TikTok and ads?", social_content_answer:"Yes. You can produce creatives for social media, paid campaigns, short videos, posts, banners and promotional assets.",
+    ready_scale:"Ready to scale?", create_test_sell:"Create more. Test more. Sell more.",
+    faster_operation:"Run a faster, more organized visual content operation that keeps up with your brand.", start_now:"Get started",
+    footer_desc:"Platform for creating ads, images, videos, UGC and social media content.", product:"Product",
+    ad_generator:"Ad generator", video_generator:"Video generator", calendar:"Calendar", company:"Company", about:"About", contact:"Contact", terms:"Terms", privacy:"Privacy",
+    plan1_option:"Plan 1 — R$ 99/month", plan2_option:"Plan 2 — R$ 179/month", per_month:"/month", all_rights:"All rights reserved.",
+    enterprise_plan:"Enterprise +", enterprise_desc:"Under $9/day to run ads and social for all clients",
+    enterprise_credits:"10,000 credits / month", enterprise_output:"About 2500 images or 250 videos",
+    unlimited_brands:"Unlimited Brands", publish_60:"Publish to 60 channels", competitor_600:"600 Competitor Runs/month",
+    rise_plan:"Rise", rise_desc:"Best for growing brands that need more output and better automation.",
+    rise_credits:"3,200 credits / month", rise_output_custom:"About 200 images or 30 videos",
+    up_to_4_brands:"Up to 4 Brands", publish_20:"Publish to 20 channels", competitor_130:"130 Competitor Runs/month",
+    core_plan:"Core", core_desc:"Ideal for smaller businesses that want consistent content every month.",
+    core_credits:"1,300 credits / month", core_output_custom:"About 100 images or 15 videos",
+    no_auto_posting:"No Auto Posting", publish_10:"Publish to 10 channels", competitor_60:"60 Competitor Runs/month",
+    choose_btn:"Choose", per_month_en:"/month"
+  },
+  es: {
+    nav_resources:"Features", nav_plans:"Planes", nav_compare:"Comparación", nav_faq:"FAQ", nav_start:"Comenzar ahora",
+    hero_eyebrow:"Contenido con IA para marcas que quieren crecer",
+    hero_title:'Crea <span class="gradient-text">anuncios, videos y UGC</span> a escala.',
+    hero_text:"Una agencia digital con IA que convierte ideas en creatividades listas para redes sociales, campañas y anuncios. Crea más contenido, prueba más formatos y descubre qué realmente llama la atención.",
+    hero_choose:"Elegir mi plan", hero_features:"Ver recursos", hero_note:"Simple, rápido y completo. Contenido visual, UGC, anuncios y planificación en un solo lugar.",
+    performance_active:"Rendimiento activo", new_campaign:"Nueva campaña", scroll_content:"Contenido que detiene el scroll.",
+    engagement:"Interacción", more_tests:"Más pruebas", creative_time:"Tiempo creativo", image_seconds:"Imagen generada en segundos", ugc_publish:"UGC listo para publicar",
+    for_brands:"Hecho para marcas, negocios locales, creadores y agencias",
+    all_one_place:"Todo en un solo lugar", idea_to_publish:"De la idea a la publicación",
+    automate_content:"Automatiza tu producción de contenido sin perder identidad de marca, velocidad ni consistencia.",
+    ai_ads:"Anuncios con IA", ai_ads_text:"Crea piezas para campañas, ofertas, lanzamientos y redes sociales con variaciones rápidas para probar creatividades.",
+    videos_reels:"Videos y Reels", videos_reels_text:"Convierte ideas, productos y textos en videos cortos listos para Instagram, TikTok, Shorts y anuncios.",
+    ugc_campaigns:"UGC para campañas", ugc_campaigns_text:"Crea testimonios, demostraciones y contenido natural que genere confianza y conversión.",
+    images_scale:"Imágenes a escala", images_scale_text:"Crea posts, banners, creatividades de producto, campañas promocionales y piezas de marca en minutos.",
+    content_calendar:"Calendario de contenido", content_calendar_text:"Organiza ideas, campañas y publicaciones por fecha para mantener activa tu presencia digital.",
+    performance_analysis:"Análisis de rendimiento", performance_analysis_text:"Descubre qué contenido funciona mejor y usa esos datos para mejorar las próximas creatividades.",
+    simple_plans:"Planes simples", choose_volume:"Elige el volumen ideal para tu marca", start_small:"Empieza pequeño y aumenta tu producción según crezcan tus necesidades.",
+    plan1:"Plan 1", plan1_desc:"Ideal para pequeños negocios y marcas que comienzan a producir contenido de forma constante.",
+    images_month:"imágenes / mes", videos_month:"videos / mes", one_brand:"1 brand", ai_image_creation:"Creación de imágenes con IA", captions_hashtags:"Textos y hashtags",
+    creative_export:"Exportación de piezas", choose_plan1:"Elegir Plan 1", most_chosen:"Más elegido",
+    plan2:"Plan 2", plan2_desc:"Para empresas que necesitan más volumen, más pruebas y presencia constante en varios canales.", up_to_3_brands:"Hasta 3 marcas",
+    videos_reels_ugc:"Videos, reels y UGC", auto_posting:"Publicación automática", content_planning:"Planificación de contenido", competitor_analysis:"Análisis de competidores",
+    priority_generation:"Generación prioritaria", choose_plan2:"Elegir Plan 2",
+    features_label:"Features", images_per_month:"Imágenes por mes", videos_per_month:"Videos por mes", basic:"Basic", advanced:"Avanzada", speed:"Velocidad", standard:"Estándar", priority:"Prioritaria",
+    natural_creatives:"Creatividades que se sienten naturales", ugc_ads_sell:"UGC, anuncios y videos pensados para vender.",
+    human_content:"Crea contenido más humano, directo y visual. Ideal para productos, servicios, lanzamientos, ofertas y campañas de rendimiento.",
+    create_campaign:"Crear mi campaña", product_review:"Reseña de producto", special_offer:"Special offer", before_after:"Antes y después", video_reels:"Video para Reels",
+    calculator:"Calculator", see_savings:"Mira cuánto puedes ahorrar", compare_cost:"Compara el costo de tu proceso actual con un plan mensual de AdNova AI.",
+    clients_brands:"Cantidad de clientes o marcas", posts_client:"Posts o anuncios por cliente / mes", minutes_piece:"Minutos para producir cada pieza",
+    hourly_cost:"Costo por hora del profesional", desired_plan:"Plan elegido", estimated_savings:"Ahorro estimado por mes",
+    current_cost:"Tu costo actual", cost_adnova:"Costo con AdNova AI", time_saved:"Tiempo estimado ahorrado",
+    frequent_questions:"Preguntas frecuentes", faq_title:"Preguntas frecuentes", what_image:"¿Qué cuenta como una imagen?",
+    what_image_answer:"Cada creativo estático finalizado cuenta como una imagen del límite mensual del plan.", what_video:"¿Qué cuenta como un video?",
+    what_video_answer:"Cada video finalizado y exportado cuenta como una unidad de video del plan.", change_plan:"¿Puedo cambiar de plan?",
+    change_plan_answer:"Sí. Puedes hacer upgrade cuando aumente tu demanda.", plan2_autopost:"¿El Plan 2 incluye publicación automática?",
+    plan2_autopost_answer:"Sí. El Plan 2 incluye funciones de automatización y publicación en las redes compatibles conectadas a la plataforma.",
+    for_agencies:"¿Sirve para agencias?", for_agencies_answer:"Sí. Está pensado para negocios, social media managers, freelancers y agencias que gestionan varias marcas.",
+    social_content:"¿Puedo crear contenido para Instagram, TikTok y anuncios?", social_content_answer:"Sí. Puedes producir creatividades para redes sociales, campañas pagadas, videos cortos, posts, banners y piezas promocionales.",
+    ready_scale:"¿Listo para escalar?", create_test_sell:"Crea más. Prueba más. Vende más.",
+    faster_operation:"Ten una operación de contenido visual más rápida, organizada y preparada para seguir el ritmo de tu marca.", start_now:"Comenzar ahora",
+    footer_desc:"Plataforma para crear anuncios, imágenes, videos, UGC y contenido para redes sociales.", product:"Producto",
+    ad_generator:"Generador de anuncios", video_generator:"Generador de videos", calendar:"Calendario", company:"Company", about:"Nosotros", contact:"Contacto", terms:"Términos", privacy:"Privacidad",
+    plan1_option:"Plan 1 — R$ 99/mes", plan2_option:"Plan 2 — R$ 179/mes", per_month:"/mes", all_rights:"Todos los derechos reservados.",
+    enterprise_plan:"Enterprise +", enterprise_desc:"Menos de US$9/día para gestionar anuncios y redes para todos los clientes",
+    enterprise_credits:"10.000 créditos / mes", enterprise_output:"Aproximadamente 2500 imágenes o 250 videos",
+    unlimited_brands:"Marcas ilimitadas", publish_60:"Publica en 60 canales", competitor_600:"600 análisis de competidores/mes",
+    rise_plan:"Rise", rise_desc:"Ideal para marcas en crecimiento que necesitan más volumen y mejor automatización.",
+    rise_credits:"3.200 créditos / mes", rise_output_custom:"Aproximadamente 200 imágenes o 30 videos",
+    up_to_4_brands:"Hasta 4 marcas", publish_20:"Publica en 20 canales", competitor_130:"130 análisis de competidores/mes",
+    core_plan:"Core", core_desc:"Ideal para pequeños negocios que quieren contenido constante cada mes.",
+    core_credits:"1.300 créditos / mes", core_output_custom:"Aproximadamente 100 imágenes o 15 videos",
+    no_auto_posting:"Sin publicación automática", publish_10:"Publica en 10 canales", competitor_60:"60 análisis de competidores/mes",
+    choose_btn:"Elegir", per_month_en:"/mes"
+  }
+};
+
+function setLanguage(lang){
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if(lang === 'en'){
+    document.title = 'AdNova AI — AI Content Agency';
+    if(metaDescription) metaDescription.setAttribute('content','Create ads, videos, UGC and images for your brand with AI.');
+  }else if(lang === 'es'){
+    document.title = 'AdNova AI — Agencia de Contenido con IA';
+    if(metaDescription) metaDescription.setAttribute('content','Crea anuncios, videos, UGC e imágenes para tu marca con IA.');
+  }else{
+    document.title = 'AdNova AI — Agência de Conteúdo com IA';
+    if(metaDescription) metaDescription.setAttribute('content','Crie anúncios, vídeos, UGC e imagens para sua marca com IA.');
+  }
+  const t = translations[lang] || translations.pt;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-html');
+    if(t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-option]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-option');
+    if(t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('[data-lang-btn]').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.langBtn === lang);
+  });
+
+  localStorage.setItem('adnova_lang', lang);
+}
+
+document.querySelectorAll('[data-lang-btn]').forEach(btn=>{
+  btn.addEventListener('click',()=>setLanguage(btn.dataset.langBtn));
+});
+
+setLanguage(localStorage.getItem('adnova_lang') || 'en');
+</script>
+
+<script>
+  const fields = ['clients','posts','minutes','hourly','plan'];
+
+  function brl(value){
+    return value.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  }
+
+  function calculate(){
+    const clients = Number(document.getElementById('clients').value || 0);
+    const posts = Number(document.getElementById('posts').value || 0);
+    const minutes = Number(document.getElementById('minutes').value || 0);
+    const hourly = Number(document.getElementById('hourly').value || 0);
+    const plan = Number(document.getElementById('plan').value || 0);
+
+    const totalHours = (clients * posts * minutes) / 60;
+    const currentCost = totalHours * hourly;
+    const saving = Math.max(0, currentCost - plan);
+
+    document.getElementById('currentCost').textContent = brl(currentCost);
+    document.getElementById('aiCost').textContent = brl(plan);
+    document.getElementById('saving').textContent = brl(saving);
+    document.getElementById('timeSaved').textContent = Math.round(totalHours) + 'h';
+  }
+
+  fields.forEach(id => document.getElementById(id).addEventListener('input', calculate));
+  calculate();
+</script>
+</body>
+</html>
